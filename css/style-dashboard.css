@@ -1,0 +1,524 @@
+:root {
+  --sidebar-bg: #eedf7a;
+  --main-bg: #881010;
+  --hover-bg: #ffffff2a;
+  --icon-color: #000;
+  --hover-text-color: #ffffff;
+}
+
+* {
+  font-family: "Ubuntu", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+.sidebar {
+  background: var(--sidebar-bg);
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease;
+}
+
+.main-content {
+  background: var(--main-bg);
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Styling sidebar header and list items */
+.sidebar .header .illustration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 19px;
+  box-sizing: border-box;
+}
+
+.sidebar .main .list-item {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  border-radius: 8px;
+  height: 20px;
+  padding: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+.sidebar .main .list-item .icon {
+  margin-left: 30px;
+  margin-right: 20px;
+  color: var(--icon-color);
+}
+
+.sidebar .main .list-item .description {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--icon-color);
+}
+
+.sidebar .main .list-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar .main .list-item:hover {
+  background-color: var(--main-bg);
+  color: var(--hover-text-color);
+}
+
+/* Hamburger menu styles */
+#menu-button {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 101;
+}
+
+#menu-checkbox {
+  display: none;
+}
+
+#menu-label {
+  position: relative;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#hamburger,
+#menu-label:before,
+#menu-label:after {
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+#menu-label:before,
+#menu-label:after {
+  content: "";
+}
+
+#menu-label:before {
+  top: -8px;
+}
+
+#menu-label:after {
+  top: 8px;
+}
+
+#hamburger {
+  top: 0;
+}
+
+#menu-checkbox:checked ~ #menu-label #hamburger {
+  opacity: 0;
+}
+
+#menu-checkbox:checked ~ #menu-label:before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+#menu-checkbox:checked ~ #menu-label:after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* Media queries */
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+
+  #menu-button {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-260px);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    transition: transform 0.4s ease;
+    z-index: 100;
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  #menu-button {
+    display: flex;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+  }
+
+  .overlay.show {
+    display: block;
+  }
+}
+
+/* Content section styles */
+.content-section {
+  display: none;
+}
+
+.content-section.active {
+  display: block;
+}
+
+.content-section h2 {
+  color: #000000;
+  margin-top: 20px;
+  padding: 30px;
+  background-color: var(--sidebar-bg);
+  font-size: 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Form styling */
+#santri-form {
+  padding: 10px;
+  background-color: #eede7a9d;
+  border-radius: 18px;
+  font-weight: bold;
+}
+
+#tabel {
+  width: 100%;
+}
+
+#submit {
+  margin-top: 30px;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #45a049;
+}
+
+#submit:hover {
+  background-color: #881010;
+  color: #ddd;
+}
+
+/* Show form button */
+#show-form-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+/* Grid layout for santri cards */
+.santri-table {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(220px, 1fr)
+  ); /* Menyesuaikan kolom berdasarkan ukuran card */
+  gap: 20px; /* Jarak antar card */
+  margin-top: 20px;
+}
+
+/* Styling for Santri Card */
+.santri-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow halus */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 200px;
+  transition: transform 0.3s, box-shadow 0.3s; /* Animasi halus */
+}
+
+.santri-card:hover {
+  transform: translateY(-5px); /* Efek hover mengangkat card */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.712); /* Efek shadow lebih besar */
+}
+
+.santri-card img {
+  width: 120px; /* Ukuran gambar lebih besar */
+  height: 150px;
+  object-fit: cover; /* Mengisi frame dengan gambar */
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.664);
+}
+
+.santri-card .info {
+  text-align: center; /* Sentuh text agar lebih rapi */
+}
+
+.santri-card .info .name {
+  font-size: 15px; /* Font lebih besar */
+  font-weight: bold;
+  margin-top: 30px;
+  color: #333;
+}
+
+.santri-card .info .address,
+.santri-card .info .hafalan,
+.santri-card .info .wali {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Tombol Edit dan Hapus */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.action-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+#show-form-button:hover {
+  background-color: #45a049;
+}
+
+/* Delete button */
+.delete-button {
+  grid-column: 1 / span 2;
+  justify-self: right;
+  padding: 8px 12px;
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #ff3333;
+}
+
+/* Style untuk tabel */
+#santri-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Style untuk header tabel */
+#santri-table thead {
+  color: #fff;
+  background-color: #000000;
+}
+
+#santri-table th {
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Style untuk sel tabel */
+#santri-table td {
+  background-color: #a0a0a0;
+  padding: 12px;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* Style untuk baris tabel */
+#santri-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Style untuk checkbox */
+.attendance-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Style untuk tombol */
+#mark-attendance {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#mark-attendance:hover {
+  background-color: #45a049;
+}
+
+/* Style untuk tabel daftar hadir */
+#santri-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Style untuk header tabel daftar hadir */
+#santri-table thead {
+  color: #fff;
+  background-color: #000;
+}
+
+#santri-table th {
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Style untuk sel tabel daftar hadir */
+#santri-table td {
+  background-color: #f2f2f2;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style untuk baris tabel daftar hadir */
+#santri-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+#santri-table tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Style untuk checkbox kehadiran */
+.attendance-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Style untuk tombol simpan dan rekap */
+#attendance-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style untuk tombol simpan daftar hadir */
+#save-attendance-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#save-attendance-button:hover {
+  background-color: #45a049;
+}
+
+/* Style untuk tombol toggle rekap */
+#toggle-recap {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#toggle-recap:hover {
+  background-color: #0056b3;
+}
+
+/* Style untuk tabel rekap kehadiran */
+#recap-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Style untuk header tabel rekap kehadiran */
+#recap-table thead {
+  background-color: #f2f2f2;
+}
+
+#recap-table th {
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Style untuk sel tabel rekap kehadiran */
+#recap-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style untuk baris tabel rekap kehadiran */
+#recap-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+#recap-table tr:hover {
+  background-color: #e0e0e0;
+}

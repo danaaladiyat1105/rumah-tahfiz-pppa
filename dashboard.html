@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Rumah Tahfidz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style-dashboard.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="overlay"></div>
+    <div class="container">
+      <aside class="sidebar">
+        <div class="header">
+          <div class="list-item">
+            <a href="#">
+              <img src="img/a.png" alt="Logo A" />
+            </a>
+          </div>
+          <div class="illustration">
+            <img src="img/RUMAH TAHFIDZ.png" alt="Logo Rumah Tahfidz" />
+          </div>
+        </div>
+        <nav class="main">
+          <div class="list-item">
+            <a href="#" data-content="santri">
+              <span class="icon"><ion-icon name="people"></ion-icon></span>
+              <span class="description">Data Santri</span>
+            </a>
+          </div>
+          <div class="list-item">
+            <a href="#" data-content="hadir">
+              <span class="icon"><ion-icon name="hand-right"></ion-icon></span>
+              <span class="description">Daftar Hadir</span>
+            </a>
+          </div>
+          <div class="list-item">
+            <a href="#" data-content="setoran">
+              <span class="icon"><ion-icon name="add-circle"></ion-icon></span>
+              <span class="description">Setoran Hafalan</span>
+            </a>
+          </div>
+          <div class="list-item">
+            <a href="#" data-content="murojaah">
+              <span class="icon"><ion-icon name="repeat"></ion-icon></span>
+              <span class="description">Muroja'ah Hafalan</span>
+            </a>
+          </div>
+          <div class="list-item">
+            <a href="#" data-content="tahsin">
+              <span class="icon"><ion-icon name="book"></ion-icon></span>
+              <span class="description">Tahsin Quran</span>
+            </a>
+          </div>
+          <div class="list-item">
+            <a href="#" data-content="ujian">
+              <span class="icon"><ion-icon name="reader"></ion-icon></span>
+              <span class="description">Ujian Tahfidz</span>
+            </a>
+          </div>
+          <div class="list-item">
+            <a href="#" data-content="evaluasi">
+              <span class="icon"><ion-icon name="man"></ion-icon></span>
+              <span class="description">Evaluasi Santri</span>
+            </a>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div id="menu-button">
+          <input type="checkbox" id="menu-checkbox" />
+          <label for="menu-checkbox" id="menu-label">
+            <div id="hamburger"></div>
+          </label>
+        </div>
+
+        <!-- Konten yang akan muncul berdasarkan pilihan -->
+        <section id="santri" class="content-section">
+          <h2>Data Santri</h2>
+          <div id="santri-table" class="santri-table">
+            <!-- Data santri akan ditambahkan di sini -->
+          </div>
+          <button id="show-form-button">Tambah Data Santri</button>
+
+          <!-- Form untuk input data santri -->
+          <form
+            id="santri-form"
+            enctype="multipart/form-data"
+            style="display: none"
+          >
+            <table id="tabel">
+              <tr>
+                <td><label for="santri-name">Nama:</label></td>
+                <td><input type="text" id="santri-name" required /></td>
+              </tr>
+              <tr>
+                <td><label for="santri-address">Alamat:</label></td>
+                <td><input type="text" id="santri-address" required /></td>
+              </tr>
+              <tr>
+                <td><label for="santri-birthdate">Tanggal Lahir:</label></td>
+                <td><input type="date" id="santri-birthdate" required /></td>
+              </tr>
+              <tr>
+                <td><label for="santri-hafalan">Jumlah Hafalan:</label></td>
+                <td><input type="number" id="santri-hafalan" required /></td>
+              </tr>
+              <tr>
+                <td><label for="santri-wali">Nomor Wali Santri:</label></td>
+                <td><input type="text" id="santri-wali" required /></td>
+              </tr>
+              <tr>
+                <td><label for="santri-photo">Foto:</label></td>
+                <td>
+                  <input
+                    type="file"
+                    id="santri-photo"
+                    accept="image/jpeg"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <button id="submit" type="submit">Simpan Data Santri</button>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </section>
+
+        <section id="hadir" class="content-section">
+          <h2>Daftar Hadir</h2>
+          <div id="attendance-container">
+            <table id="santri-table">
+              <thead>
+                <tr>
+                  <th>Nama Santri</th>
+                  <th>Tanggal</th>
+                  <th>Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Nama santri, tanggal, dan checkbox akan ditambahkan di sini dengan JavaScript -->
+              </tbody>
+            </table>
+            <!-- Tombol simpan dan rekap dipindahkan ke bawah tabel -->
+            <div id="attendance-buttons">
+              <button id="save-attendance-button">Simpan Daftar Hadir</button>
+              <button id="toggle-recap">Tampilkan Rekap Kehadiran</button>
+            </div>
+            <div id="recap-container" style="display: none">
+              <h3>Rekap Kehadiran</h3>
+              <table id="recap-table">
+                <thead>
+                  <tr>
+                    <th>Nama Santri</th>
+                    <th>Kehadiran</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Data rekap kehadiran akan ditambahkan di sini dengan JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="setoran" class="content-section">
+          Konten Setoran Hafalan
+        </section>
+        <section id="murojaah" class="content-section">
+          Konten Muroja'ah Hafalan
+        </section>
+        <section id="tahsin" class="content-section">
+          Konten Tahsin Quran
+        </section>
+        <section id="ujian" class="content-section">
+          Konten Ujian Tahfidz
+        </section>
+        <section id="evaluasi" class="content-section">
+          Konten Evaluasi Santri
+        </section>
+      </main>
+    </div>
+    <script src="js/dashboard.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
